@@ -1,0 +1,32 @@
+body {
+	font-size: 32px;
+	background-image: url(../images/background3.jpg);
+	background-size: cover;
+	
+	
+}
+
+#number-to-guess,
+#crystals {
+	margin-top: 0%;
+	margin-bottom: 0%;
+}
+
+#number-to-guess,
+#your-number {
+	font-size: 54px;
+	background: DarkSlateBlue;
+	color: red;
+	font-weight: bold;
+
+}
+
+.win-lose {
+	background: CornflowerBlue;
+}
+
+p {
+	text-align: center;
+	color: white;
+}
+

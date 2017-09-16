@@ -3,16 +3,46 @@
 
 <head>
     <title>Crystals Collector Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <script type="text/javascript" src="assets/javascript/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-    <div id="number-to-guess"></div>
-    <div>Wins: <span id="win"></span></div>
-    <div>Loses: <span id="lose"></span></div>
-    <div id="crystals"></div>
-    <div id="your-number"></div>
-    <script type="text/javascript" src="assets/javascript/game.js"></script>
+
+</div>
+	<div class="container">
+		<p>Number for you to guess</p>
+		<div class="row">
+			<div class="col-xs-4"></div>
+		    <div id="number-to-guess" class="col-xs-4 text-center"></div>
+
+		</div>
+		<p>Game ends when you either win or lose 5 times</p>
+		<div class="row">
+			<div class="col-xs-4"></div>
+		    <div class="col-xs-4 text-center win-lose">Wins: <span id="win"></span></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4"></div>
+		    <div class="col-xs-4 text-center win-lose">Loses: <span id="lose"></span></div>
+		</div>
+		<p>Crystals contain a random number between 1-12</p>
+		<div class="row">
+		    <div id="crystals" class="col-xs-12 text-center"></div>
+		    <p>Your Number</p>
+		</div>
+		<div class="row">
+			<div class="col-xs-4"></div>
+		    <div id="your-number" class="col-xs-4 text-center"></div>
+		</div>
+	</div>
+
+
+
+
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 
 </html>

@@ -11,6 +11,8 @@ var randomNumber = Math.floor(Math.random() * (randomMax - randomMin + 1) + rand
 var hiddenMin = 1;
 var hiddenMax = 12;
 
+//var ids = ["crystal-image1", "crystal-image2", "crystal-image3", "crystal-image4"]
+
 var counter = 0
 
 //starts your win and loses at 0
@@ -22,10 +24,9 @@ function randomHid() {
     var hiddenNumber = Math.floor(Math.random() * (hiddenMax - hiddenMin + 1) + hiddenMin);
     return hiddenNumber;
 };
-//*******************issue with gamereset****************
+
 //To reset the game after win.lose
 function gameReset() {
-    //hiddenNumber = Math.floor(Math.random()*(hiddenMax - hiddenMin + 1) + hiddenMin); $("#number-to-guess").text(randomNumber);
     hidNum = [];
     counter = 0;
     randomNumber = Math.floor(Math.random() * (randomMax - randomMin + 1) + randomMin);
@@ -34,21 +35,38 @@ function gameReset() {
     };
     console.log(randomNumber);
     console.log(hidNum);
-    //hidNumPlace();
-    for (var i = 0; i < fourCrystals.length; i++) {
-        $(".crystal-image").attr("value", hidNum[i]);
-    };
-    
+    $(".crystal-image").remove();
+    hidNumPlace();
+    $(".crystal-image").on("click", function() {
+        var data = ($(this).attr("value"));
+        data = parseInt(data);
+        counter += data;
+        //replaces your number
+        $("#your-number").text(counter);
+        didYouWin();
+        if (loses === 5) {
+            $(".container").fadeOut(1000, function() {
+                $(this).remove();
+                $("body").css("background-image", "url('assets/images/game-over.jpg')");
+            });
+        } else if (wins === 5){
+            $(".container").fadeOut(1000, function() {
+                $(this).remove();
+                $("body").css("background-image", "url('assets/images/winner.jpg')");
+            });
+        }
 
 
-
+    });
     $("#number-to-guess").text(randomNumber);
     $("#your-number").text(counter);
 };
+
 //sends initial number to the div
 $("#number-to-guess").text(randomNumber);
 $("#win").text(wins);
 $("#lose").text(loses);
+$("#your-number").text(counter);
 
 //an array of numbers between 1-12 that will be used for the value of the crytals
 var hidNum = [];
@@ -61,7 +79,7 @@ var fourCrystals = ["assets/images/Crystal-1.png", "assets/images/Crystal-2.png"
 //To send a random number between 1-12 to the array hidNum 4 times
 for (var i = 0; i < fourCrystals.length; i++) {
     hidNum.push(randomHid());
-}
+};
 
 //function to place the hidden number value to each crystal
 function hidNumPlace() {
@@ -72,28 +90,24 @@ function hidNumPlace() {
         image.attr("value", hidNum[i]);
         $("#crystals").append(image);
     }
-}
+};
 
 hidNumPlace();
 
 //function to check to see if you won or lost
-function didYouWin(){
+function didYouWin() {
 
-    if (counter > randomNumber){
+    if (counter > randomNumber) {
         loses++;
         $("#lose").text(loses);
         console.log("you lose");
         gameReset();
-
-    } else if ( counter === randomNumber) {
+    } else if (counter === randomNumber) {
         wins++;
         $("#win").text(wins);
         console.log("you win");
         gameReset();
     }
-    
-
-
 };
 
 //controls what happens when you click an image
@@ -103,6 +117,5 @@ $(".crystal-image").on("click", function() {
     counter += data;
     //replaces your number
     $("#your-number").text(counter);
-    didYouWin();    
-
-})
+    didYouWin();
+});
